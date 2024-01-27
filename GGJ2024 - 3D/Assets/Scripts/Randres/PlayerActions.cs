@@ -9,6 +9,9 @@ public class PlayerActions : MonoBehaviour
     private PlayerController m_playerController;
     public Transform attachPoint;
     public bool isAttach;
+    public bool isInAObject;
+    [SerializeField] private Item item;
+    [SerializeField] private GameObject itemGameObject;
 
     // Start is called before the first frame update
     void Awake()
@@ -28,13 +31,74 @@ public class PlayerActions : MonoBehaviour
         GameObject obj = other.gameObject;
         if (other.GetComponent<Item>() != null)
         {
-            if(!isAttach)
+            itemGameObject = obj;
+            item = other.GetComponent<Item>();
+            isInAObject = true;
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        GameObject obj = other.gameObject;
+        if (other.GetComponent<Item>() != null)
+        {
+            switch (other.GetComponent<Item>().itemType) 
             {
-                print("Se puede agarrar");
+                case ItemType.Dialogo:
+                    print("Esto en un dialogo");
+                    break;
+                case ItemType.Agarrable:
+                    print("Estoy con un objeto agarrable");
+                    break;
+                default:
+                    break;
             }
-            else
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        GameObject obj = other.gameObject;
+        if (other.GetComponent<Item>() != null)
+        {
+            itemGameObject = null;
+            item = null;
+            isInAObject = false;
+        }
+    }
+
+    private void ActiveActionMode()
+    {
+        if(isInAObject)
+        {
+            switch (itemGameObject.GetComponent<Item>().itemType)
             {
-                print("No se puede agarrar");
+                case ItemType.Dialogo:
+                    print("Se activo el dialogo");
+                    break;
+                case ItemType.Agarrable:
+                    if(isAttach)
+                    {
+                        print("Solte el objeto");
+                        //itemGameObject.transform.parent = null;
+                        itemGameObject.transform.SetParent(null);
+                        isAttach = false;
+                        //itemGameObject.GetComponent<Rigidbody>().useGravity = true;
+                        //itemGameObject.GetComponent<Rigidbody>().isKinematic = false;
+                    }
+                    else
+                    {
+                        print("Agarre el objeto");
+                        //itemGameObject.transform.parent = attachPoint;
+                        itemGameObject.transform.SetParent(attachPoint);
+                        itemGameObject.transform.position = attachPoint.position;
+                        isAttach = true;
+                        //itemGameObject.GetComponent<Rigidbody>().useGravity = false;
+                        //itemGameObject.GetComponent<Rigidbody>().isKinematic = true;
+                    }
+                    break;
+                default:
+                    break;
             }
         }
     }
@@ -48,7 +112,7 @@ public class PlayerActions : MonoBehaviour
 
     private void UseAction(InputAction.CallbackContext callbackContext)
     {
-
+        ActiveActionMode();
     }
 
     private void OnDisable()

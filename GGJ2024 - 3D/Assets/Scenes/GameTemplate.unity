@@ -242,6 +242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemType: 1
+  isGrabbleble: 0
 --- !u!1 &235110174
 GameObject:
   m_ObjectHideFlags: 0
@@ -708,6 +709,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attachPoint: {fileID: 679509331}
   isAttach: 0
+  isInAObject: 0
+  item: {fileID: 0}
+  itemGameObject: {fileID: 0}
 --- !u!135 &1923745283
 SphereCollider:
   m_ObjectHideFlags: 0
