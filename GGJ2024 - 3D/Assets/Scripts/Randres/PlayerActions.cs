@@ -31,27 +31,36 @@ public class PlayerActions : MonoBehaviour
         GameObject obj = other.gameObject;
         if (other.GetComponent<Item>() != null)
         {
-            itemGameObject = obj;
-            item = other.GetComponent<Item>();
-            isInAObject = true;
+            if (!isAttach)
+            {
+                itemGameObject = obj;
+                item = other.GetComponent<Item>();
+                isInAObject = true;
+            }
         }
     }
 
+    [SerializeField] private Vector3 m_startScale;
+    [SerializeField] private Vector3 m_finalScale;
     private void OnTriggerStay(Collider other)
     {
         GameObject obj = other.gameObject;
         if (other.GetComponent<Item>() != null)
         {
-            switch (other.GetComponent<Item>().itemType) 
+            if (!isAttach)
             {
-                case ItemType.Dialogo:
-                    print("Esto en un dialogo");
-                    break;
-                case ItemType.Agarrable:
-                    print("Estoy con un objeto agarrable");
-                    break;
-                default:
-                    break;
+                switch (other.GetComponent<Item>().itemType)
+                {
+                    case ItemType.Dialogo:
+                        print("Esto en un dialogo");
+                        other.GetComponent<Item>().canScale = true;
+                        break;
+                    case ItemType.Agarrable:
+                        print("Estoy con un objeto agarrable");
+                        break;
+                    default:
+                        break;
+                }
             }
         }
     }
@@ -61,9 +70,22 @@ public class PlayerActions : MonoBehaviour
         GameObject obj = other.gameObject;
         if (other.GetComponent<Item>() != null)
         {
-            itemGameObject = null;
-            item = null;
-            isInAObject = false;
+            if (!isAttach)
+            {
+                itemGameObject = null;
+                item = null;
+                isInAObject = false;
+            }
+            switch (other.GetComponent<Item>().itemType)
+            {
+                case ItemType.Dialogo:
+                    other.GetComponent<Item>().canScale = false;
+                    break;
+                case ItemType.Agarrable:
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
@@ -74,10 +96,14 @@ public class PlayerActions : MonoBehaviour
             switch (itemGameObject.GetComponent<Item>().itemType)
             {
                 case ItemType.Dialogo:
-                    print("Se activo el dialogo");
+                    if (!isAttach)
+                    {
+                        print("Se activo el dialogo");
+                       
+                    }
                     break;
                 case ItemType.Agarrable:
-                    if(isAttach)
+                    if (isAttach)
                     {
                         print("Solte el objeto");
                         //itemGameObject.transform.parent = null;
