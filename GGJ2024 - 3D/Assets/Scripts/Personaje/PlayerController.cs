@@ -35,6 +35,15 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Interaccion"",
+                    ""type"": ""Button"",
+                    ""id"": ""33b66cd6-df50-4482-b090-33d9450e9d47"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -114,6 +123,28 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
                     ""action"": ""Walk"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e55d3eb6-23f4-4cc0-a9f6-6d947c035ee6"",
+                    ""path"": ""<DualShockGamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interaccion"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a26a36ab-6e1c-4b29-ad96-298e7316f309"",
+                    ""path"": ""<XInputController>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interaccion"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -123,6 +154,7 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
         // Move
         m_Move = asset.FindActionMap("Move", throwIfNotFound: true);
         m_Move_Walk = m_Move.FindAction("Walk", throwIfNotFound: true);
+        m_Move_Interaccion = m_Move.FindAction("Interaccion", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -185,11 +217,13 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Move;
     private List<IMoveActions> m_MoveActionsCallbackInterfaces = new List<IMoveActions>();
     private readonly InputAction m_Move_Walk;
+    private readonly InputAction m_Move_Interaccion;
     public struct MoveActions
     {
         private @PlayerController m_Wrapper;
         public MoveActions(@PlayerController wrapper) { m_Wrapper = wrapper; }
         public InputAction @Walk => m_Wrapper.m_Move_Walk;
+        public InputAction @Interaccion => m_Wrapper.m_Move_Interaccion;
         public InputActionMap Get() { return m_Wrapper.m_Move; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -202,6 +236,9 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
             @Walk.started += instance.OnWalk;
             @Walk.performed += instance.OnWalk;
             @Walk.canceled += instance.OnWalk;
+            @Interaccion.started += instance.OnInteraccion;
+            @Interaccion.performed += instance.OnInteraccion;
+            @Interaccion.canceled += instance.OnInteraccion;
         }
 
         private void UnregisterCallbacks(IMoveActions instance)
@@ -209,6 +246,9 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
             @Walk.started -= instance.OnWalk;
             @Walk.performed -= instance.OnWalk;
             @Walk.canceled -= instance.OnWalk;
+            @Interaccion.started -= instance.OnInteraccion;
+            @Interaccion.performed -= instance.OnInteraccion;
+            @Interaccion.canceled -= instance.OnInteraccion;
         }
 
         public void RemoveCallbacks(IMoveActions instance)
@@ -229,5 +269,6 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
     public interface IMoveActions
     {
         void OnWalk(InputAction.CallbackContext context);
+        void OnInteraccion(InputAction.CallbackContext context);
     }
 }
