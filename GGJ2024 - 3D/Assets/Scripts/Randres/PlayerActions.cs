@@ -22,6 +22,15 @@ public class PlayerActions : MonoBehaviour
         
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        GameObject obj = other.gameObject;
+        if (other.GetComponent<Item>() != null)
+        {
+            
+        }
+    }
+
     #region Input Enable / Disable
     private void OnEnable()
     {
