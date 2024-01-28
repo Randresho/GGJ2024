@@ -103,6 +103,7 @@ public class MovimientoDelPersonaje : MonoBehaviour
         {
             spriteRenderer.flipX = true;
             spriteRendererShadow.flipX = true;
+            print("La velocidad del personaje es "+m_rigidbody.velocity.z);
         }
         else if(m_rigidbody.velocity.z > 0.1f)
         {
