@@ -62,7 +62,7 @@ MonoBehaviour:
   - id: 2
     fields:
     - title: Name
-      value: Patos
+      value: Duck Team
       type: 0
       typeString: CustomFieldType_Text
     - title: Pictures
@@ -136,7 +136,7 @@ MonoBehaviour:
       type: 3
       typeString: 
     - title: Description
-      value: The evil emperor's guards. They have a note with the terminal password.
+      value: m
       type: 0
       typeString: CustomFieldType_Text
     - title: IsPlayer
@@ -150,7 +150,7 @@ MonoBehaviour:
   - id: 6
     fields:
     - title: Name
-      value: Enemy
+      value: Nutria
       type: 0
       typeString: 
     - title: Pictures
@@ -158,15 +158,36 @@ MonoBehaviour:
       type: 3
       typeString: CustomFieldType_Files
     - title: Description
-      value: The Enemy actor is used for enemies to bark menacing one-off gameplay
-        lines that threaten the Player.
+      value: n
       type: 0
-      typeString: 
+      typeString: CustomFieldType_Text
     - title: IsPlayer
       value: False
       type: 2
       typeString: CustomFieldType_Boolean
     portrait: {fileID: 2800000, guid: 3e54ad1935c5efc4db4454fafe3d8ae5, type: 3}
+    spritePortrait: {fileID: 0}
+    alternatePortraits: []
+    spritePortraits: []
+  - id: 7
+    fields:
+    - title: Name
+      value: Piedra
+      type: 0
+      typeString: CustomFieldType_Text
+    - title: Pictures
+      value: '[]'
+      type: 3
+      typeString: CustomFieldType_Files
+    - title: Description
+      value: 
+      type: 0
+      typeString: CustomFieldType_Text
+    - title: IsPlayer
+      value: False
+      type: 2
+      typeString: CustomFieldType_Boolean
+    portrait: {fileID: 0}
     spritePortrait: {fileID: 0}
     alternatePortraits: []
     spritePortraits: []
@@ -426,7 +447,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 468
+        x: 467
         y: 24
         width: 160
         height: 30
@@ -986,7 +1007,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 215, y: 0}
+    canvasScrollPosition: {x: 23, y: 0}
     canvasZoom: 1
   - id: 2
     fields:
