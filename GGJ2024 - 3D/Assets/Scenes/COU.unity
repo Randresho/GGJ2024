@@ -598,6 +598,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a64270d4f91b52646b5222925200ffdc, type: 3}
+--- !u!95 &1181634496 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1438558122363106620, guid: 7cb3309f0885f114dbf5bcf039d36bd2, type: 3}
+  m_PrefabInstance: {fileID: 1695970979}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &1181634497 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 8879168186234049726, guid: 7cb3309f0885f114dbf5bcf039d36bd2, type: 3}
+  m_PrefabInstance: {fileID: 1695970979}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1287192271
 GameObject:
   m_ObjectHideFlags: 0
@@ -820,6 +830,16 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!95 &1399878151 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7927321334721704325, guid: 7cb3309f0885f114dbf5bcf039d36bd2, type: 3}
+  m_PrefabInstance: {fileID: 1695970979}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &1399878152 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 8044307275217684034, guid: 7cb3309f0885f114dbf5bcf039d36bd2, type: 3}
+  m_PrefabInstance: {fileID: 1695970979}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1565872086
 GameObject:
   m_ObjectHideFlags: 0
@@ -976,6 +996,30 @@ PrefabInstance:
     - target: {fileID: 1547591394575392085, guid: 7cb3309f0885f114dbf5bcf039d36bd2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5269638766077074509, guid: 7cb3309f0885f114dbf5bcf039d36bd2, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6003291827477457285, guid: 7cb3309f0885f114dbf5bcf039d36bd2, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1181634496}
+    - target: {fileID: 6003291827477457285, guid: 7cb3309f0885f114dbf5bcf039d36bd2, type: 3}
+      propertyPath: animatorShadow
+      value: 
+      objectReference: {fileID: 1399878151}
+    - target: {fileID: 6003291827477457285, guid: 7cb3309f0885f114dbf5bcf039d36bd2, type: 3}
+      propertyPath: spriteRenderer
+      value: 
+      objectReference: {fileID: 1181634497}
+    - target: {fileID: 6003291827477457285, guid: 7cb3309f0885f114dbf5bcf039d36bd2, type: 3}
+      propertyPath: spriteRendererShadow
+      value: 
+      objectReference: {fileID: 1399878152}
+    - target: {fileID: 6659818490015883842, guid: 7cb3309f0885f114dbf5bcf039d36bd2, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
