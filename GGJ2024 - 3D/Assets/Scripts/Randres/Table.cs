@@ -20,6 +20,7 @@ public class Table : MonoBehaviour
 
     [Header("Misiones")]
     public bool isMisionComplete;
+    public GameObject kidnapGameObject;
 
     // Start is called before the first frame update
     void Awake()
@@ -32,7 +33,7 @@ public class Table : MonoBehaviour
                 tableStatus = TableStatus.Neutral;
                 break;
             case AnimalTable.Patos:
-                tableStatus = TableStatus.Angry;
+                tableStatus = TableStatus.Happy;
                 break;
             case AnimalTable.Leones:
                 tableStatus = TableStatus.Angry;

@@ -148,8 +148,11 @@ MonoBehaviour:
   finalScale: {x: 0, y: 0, z: 0}
   canScale: 0
   speedScale: 0
+  m_rigidbody: {fileID: 0}
+  m_boxCollider: {fileID: 0}
   tableObject: {fileID: 0}
   animalTable: 0
+  isMisionComplete: 0
 --- !u!65 &22893555
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2208,6 +2211,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 873a809d22e417347b0af327ded5d8fa, type: 3}
   animator: {fileID: 1774283206}
   isMisionComplete: 0
+  kidnapGameObject: {fileID: 0}
 --- !u!4 &1878205187 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3534472267501222792, guid: e1071b04871f35a4f80041b9f54bc4a3, type: 3}
@@ -2235,7 +2239,7 @@ PrefabInstance:
       objectReference: {fileID: 844254476}
     - target: {fileID: 2870165758782173411, guid: a06d1826f8a482347af96496f229bdd5, type: 3}
       propertyPath: animalTable
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2870165758782173411, guid: a06d1826f8a482347af96496f229bdd5, type: 3}
       propertyPath: tableStatus
