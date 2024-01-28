@@ -2072,7 +2072,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 920783631}
         m_TargetAssemblyTypeName: Menu, Assembly-CSharp
-        m_MethodName: CargarJuego
+        m_MethodName: credits
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2178,7 +2178,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "NOELIA COTON \nALE TOBIAS\nRENE AYALA\nDYLAN HERRERA\nANDRES HERNANDEZ\nANDRES
-    COUTI\xD1O"
+    COUTI\xD1O\nJOEL CIFUENTES"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
