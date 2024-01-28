@@ -64,13 +64,6 @@ public class PlayerActions : MonoBehaviour
             canvasGameObjectHerramientas.transform.localScale = Vector3.Lerp(canvasGameObjectHerramientas.transform.localScale, startScale, Time.deltaTime * speedScale);
             canNavegateOptions = false;
         }
-
-        /*if (canScaleHerramientas)
-            EventSystem.current.SetSelectedGameObject(_uiHerramientas);
-        else if (canScale)
-            EventSystem.current.SetSelectedGameObject(_uiOpciones);*/
-        if(!canScale && !canScaleHerramientas)
-            EventSystem.current.SetSelectedGameObject(null);
     }
 
     private void UseSameEvent(GameObject evento)
@@ -90,17 +83,11 @@ public class PlayerActions : MonoBehaviour
         canScale = !canScale;
         canScaleHerramientas = !canScaleHerramientas;
 
-        StartCoroutine(DelaySwap());
-
-    }
-
-    IEnumerator DelaySwap()
-    {
-        yield return new WaitForSeconds(0.5f);
-        if (canScale)
-            EventSystem.current.SetSelectedGameObject(_uiOpciones);
-        if (canScaleHerramientas)
+        if(canScaleHerramientas)
             EventSystem.current.SetSelectedGameObject(_uiHerramientas);
+
+        if(canScale)
+            EventSystem.current.SetSelectedGameObject(_uiOpciones);
     }
 
     private void OnTriggerEnter(Collider other)
