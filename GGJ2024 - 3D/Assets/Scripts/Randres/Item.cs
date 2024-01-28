@@ -8,7 +8,6 @@ public class Item : MonoBehaviour
 {
     public ItemType itemType;
     public bool isGrabbleble;
-    public Canvas canvas;
     public GameObject canvasGameObject;
     public Vector3 starScale, finalScale;
     public bool canScale;
@@ -23,13 +22,23 @@ public class Item : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(canScale) 
+        switch (itemType)
         {
-            canvasGameObject.transform.localScale = Vector3.Lerp(canvasGameObject.transform.localScale, finalScale, Time.deltaTime * speedScale);
+            case ItemType.Dialogo:
+                if (canScale)
+                {
+                    canvasGameObject.transform.localScale = Vector3.Lerp(canvasGameObject.transform.localScale, finalScale, Time.deltaTime * speedScale);
+                }
+                else
+                {
+                    canvasGameObject.transform.localScale = Vector3.Lerp(canvasGameObject.transform.localScale, starScale, Time.deltaTime * speedScale);
+                }
+                break;
+            case ItemType.Agarrable:
+                break;
+            default:
+                break;
         }
-        else
-        {
-            canvasGameObject.transform.localScale = Vector3.Lerp(canvasGameObject.transform.localScale, starScale, Time.deltaTime * speedScale);
-        }
+        
     }
 }

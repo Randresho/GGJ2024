@@ -38,6 +38,11 @@ public class PlayerActions : MonoBehaviour
                 isInAObject = true;
             }
         }
+
+        if (other.GetComponent<Table>() != null)
+        {
+
+        }
     }
 
     [SerializeField] private Vector3 m_startScale;
@@ -63,6 +68,11 @@ public class PlayerActions : MonoBehaviour
                 }
             }
         }
+
+        if (other.GetComponent<Table>() != null)
+        {
+            other.GetComponent<Table>().canScale = true;
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -86,6 +96,11 @@ public class PlayerActions : MonoBehaviour
                 default:
                     break;
             }
+        }
+
+        if (other.GetComponent<Table>() != null)
+        {
+            other.GetComponent<Table>().canScale = false;
         }
     }
 
