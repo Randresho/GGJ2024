@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 public class PlayerActions : MonoBehaviour
 {
@@ -14,6 +15,20 @@ public class PlayerActions : MonoBehaviour
     [SerializeField] private GameObject itemGameObject;
     private MovimientoDelPersonaje movimiento;
 
+    [Header("Canvas")]
+    public bool canNavegateOptions;
+    public GameObject canvasGameObject;
+    public GameObject canvasGameObjectHerramientas;
+    private Vector3 startScale;
+    public Vector3 finalScale = new Vector3(1f, 1f, 1f);
+    public float speedScale = 10f;
+    public bool canScale;
+    public bool canScaleHerramientas;
+
+    [Header("First Selected Options")]
+    [SerializeField] private GameObject _uiOpciones;
+    [SerializeField] private GameObject _uiHerramientas;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -25,6 +40,39 @@ public class PlayerActions : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (canScale)
+        {
+            canvasGameObject.transform.localScale = Vector3.Lerp(canvasGameObject.transform.localScale, finalScale, Time.deltaTime * speedScale);
+            canNavegateOptions = true;
+        }
+        else
+        {
+            canvasGameObject.transform.localScale = Vector3.Lerp(canvasGameObject.transform.localScale, startScale, Time.deltaTime * speedScale);
+            canNavegateOptions = false;
+        }
+
+        if (canScaleHerramientas)
+        {
+            canvasGameObjectHerramientas.transform.localScale = Vector3.Lerp(canvasGameObjectHerramientas.transform.localScale, finalScale, Time.deltaTime * speedScale);
+            canNavegateOptions = true;
+        }
+        else
+        {
+            canvasGameObjectHerramientas.transform.localScale = Vector3.Lerp(canvasGameObjectHerramientas.transform.localScale, startScale, Time.deltaTime * speedScale);
+            canNavegateOptions = false;
+        }
+    }
+
+    public void SwapUi()
+    {
+        canScale = !canScale;
+        canScaleHerramientas = !canScaleHerramientas;
+
+        if(canScaleHerramientas)
+            EventSystem.current.SetSelectedGameObject(_uiHerramientas);
+
+        if(canScale)
+            EventSystem.current.SetSelectedGameObject(_uiOpciones);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -42,7 +90,25 @@ public class PlayerActions : MonoBehaviour
 
         if (other.GetComponent<Table>() != null)
         {
-
+            switch (other.GetComponent<Table>().tableStatus)
+            {
+                case TableStatus.Angry:
+                    canScaleHerramientas = true;
+                    EventSystem.current.SetSelectedGameObject(_uiHerramientas);
+                    break;
+                case TableStatus.Neutral:
+                    canScale = true;
+                    EventSystem.current.SetSelectedGameObject(_uiOpciones);
+                    break;
+                case TableStatus.Happy:
+                    canScale = true;
+                    EventSystem.current.SetSelectedGameObject(_uiOpciones);
+                    break;
+                case TableStatus.Comida:
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
@@ -113,6 +179,11 @@ public class PlayerActions : MonoBehaviour
         if (other.GetComponent<Table>() != null)
         {
             other.GetComponent<Table>().canScale = false;
+
+            canScaleHerramientas = false;
+            canScale = false;
+
+            EventSystem.current.SetSelectedGameObject(null);
         }
     }
 
