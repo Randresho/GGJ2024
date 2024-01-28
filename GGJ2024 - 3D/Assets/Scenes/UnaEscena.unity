@@ -142,6 +142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 1
   isGrabbleble: 0
+  wasGrab: 0
   canvasGameObject: {fileID: 0}
   starScale: {x: 0, y: 0, z: 0}
   finalScale: {x: 0, y: 0, z: 0}
@@ -2229,6 +2230,10 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 844254476}
+    - target: {fileID: 2870165758782173411, guid: a06d1826f8a482347af96496f229bdd5, type: 3}
+      propertyPath: tableStatus
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2870165758782173411, guid: a06d1826f8a482347af96496f229bdd5, type: 3}
       propertyPath: emocionImagen
       value: 
