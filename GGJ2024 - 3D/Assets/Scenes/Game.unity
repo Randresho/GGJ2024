@@ -5232,7 +5232,7 @@ SpriteRenderer:
   m_Size: {x: 10.8, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1030378522
@@ -7040,7 +7040,7 @@ SpriteRenderer:
   m_Size: {x: 10.8, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1343497207 stripped
@@ -7616,7 +7616,7 @@ SpriteRenderer:
   m_Size: {x: 10.8, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1001 &1456490487
@@ -8006,6 +8006,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5052448599825455621, guid: a06d1826f8a482347af96496f229bdd5, type: 3}
   m_PrefabInstance: {fileID: 1746639899}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1534944963 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2129174354320314090, guid: a06d1826f8a482347af96496f229bdd5, type: 3}
+  m_PrefabInstance: {fileID: 1746639899}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1534944961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1543486898
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8961,6 +8972,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MesaSimple (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2870165758782173411, guid: a06d1826f8a482347af96496f229bdd5, type: 3}
+      propertyPath: emocionImagen
+      value: 
+      objectReference: {fileID: 1534944963}
     - target: {fileID: 4166745141716467120, guid: a06d1826f8a482347af96496f229bdd5, type: 3}
       propertyPath: m_Size.x
       value: 4.26
