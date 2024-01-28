@@ -11,6 +11,10 @@ public class MovimientoDelPersonaje : MonoBehaviour
     public float m_PlayerSpeed = 0f;
     public float m_PlayerSpeedMax = 0f;
     private Vector2 moveInput;
+    public Animator animator;
+    public Animator animatorShadow;
+    public SpriteRenderer spriteRenderer;
+    public SpriteRenderer spriteRendererShadow;
 
 
     void Awake()
@@ -33,6 +37,34 @@ public class MovimientoDelPersonaje : MonoBehaviour
     private void SetVelocity(float speed)
     {
         m_rigidbody.velocity = new Vector3(-moveInput.y * speed, 0f, moveInput.x * speed);
+        if (m_rigidbody.velocity.magnitude > 0.1f)
+        {
+            animator.SetBool("Walk", true);
+            animator.SetBool("Idle", false);
+
+            animatorShadow.SetBool("Walk", true);
+            animatorShadow.SetBool("Idle", false);
+        }
+        else
+        {
+            animator.SetBool("Walk", false);
+            animator.SetBool("Idle", true);
+
+            animatorShadow.SetBool("Walk", false);
+            animatorShadow.SetBool("Idle", true);
+        }
+        if(m_rigidbody.velocity.z < 0.1f)
+        {
+            spriteRenderer.flipX = true;
+            spriteRendererShadow.flipX = true;
+            print("La velocidad del personaje es "+m_rigidbody.velocity.z);
+        }
+        else if(m_rigidbody.velocity.z > 0.1f)
+        {
+            spriteRenderer.flipX = false;
+            spriteRendererShadow.flipX = false;
+        }
+
         //m_rigidbody.velocity = moveInput * speed;
 
         //animator.SetFloat("VelX", m_rigidbody2D.velocity.x);
