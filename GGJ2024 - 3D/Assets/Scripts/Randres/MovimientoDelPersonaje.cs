@@ -15,6 +15,7 @@ public class MovimientoDelPersonaje : MonoBehaviour
     public Animator animatorShadow;
     public SpriteRenderer spriteRenderer;
     public SpriteRenderer spriteRendererShadow;
+    private PlayerActions playerActions;
 
 
     void Awake()
@@ -23,6 +24,7 @@ public class MovimientoDelPersonaje : MonoBehaviour
         m_playerController = new PlayerController();
         m_rigidbody = GetComponent<Rigidbody>();
         m_PlayerSpeedMax = m_PlayerSpeed;
+        playerActions = FindObjectOfType<PlayerActions>();  
     }
 
     
@@ -39,24 +41,69 @@ public class MovimientoDelPersonaje : MonoBehaviour
         m_rigidbody.velocity = new Vector3(-moveInput.y * speed, 0f, moveInput.x * speed);
         if (m_rigidbody.velocity.magnitude > 0.1f)
         {
-            animator.SetBool("Walk", true);
-            animator.SetBool("Idle", false);
+            if(!playerActions.isAttach)
+            {
+                animator.SetBool("Walk", true);
+                animator.SetBool("Idle", false);
+                animator.SetBool("CarryingWalk", false);
+                animator.SetBool("CarryingIdle", false);
 
-            animatorShadow.SetBool("Walk", true);
-            animatorShadow.SetBool("Idle", false);
+                animatorShadow.SetBool("Walk", true);
+                animatorShadow.SetBool("Idle", false);
+                animatorShadow.SetBool("CarryingWalk", false);
+                animatorShadow.SetBool("CarryingIdle", false);
+            }
+            else
+            {
+                animator.SetBool("Walk", false);
+                animator.SetBool("Idle", false);
+                animator.SetBool("CarryingWalk", true);
+                animator.SetBool("CarryingIdle", false);
+
+                animatorShadow.SetBool("Walk", false);
+                animatorShadow.SetBool("Idle", false);
+                animatorShadow.SetBool("CarryingWalk", true);
+                animatorShadow.SetBool("CarryingIdle", false);
+            }
         }
         else
         {
-            animator.SetBool("Walk", false);
+            if (!playerActions.isAttach)
+            {
+                animator.SetBool("Walk", false);
+                animator.SetBool("Idle", true);
+                animator.SetBool("CarryingWalk", false);
+                animator.SetBool("CarryingIdle", false);
+
+                animatorShadow.SetBool("Walk", false);
+                animatorShadow.SetBool("Idle", true);
+                animatorShadow.SetBool("CarryingWalk", false);
+                animatorShadow.SetBool("CarryingIdle", false);
+            }
+            else
+            {
+                animator.SetBool("Walk", false);
+                animator.SetBool("Idle", false);
+                animator.SetBool("CarryingWalk", false);
+                animator.SetBool("CarryingIdle", true);
+
+                animatorShadow.SetBool("Walk", false);
+                animatorShadow.SetBool("Idle", false);
+                animatorShadow.SetBool("CarryingWalk", false);
+                animatorShadow.SetBool("CarryingIdle", true);
+            }
+
+            /*animator.SetBool("Walk", false);
             animator.SetBool("Idle", true);
 
             animatorShadow.SetBool("Walk", false);
-            animatorShadow.SetBool("Idle", true);
+            animatorShadow.SetBool("Idle", true);*/
         }
         if(m_rigidbody.velocity.z < 0.1f)
         {
             spriteRenderer.flipX = true;
             spriteRendererShadow.flipX = true;
+            print("La velocidad del personaje es "+m_rigidbody.velocity.z);
         }
         else if(m_rigidbody.velocity.z > 0.1f)
         {

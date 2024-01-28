@@ -315,7 +315,7 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""up"",
                     ""id"": ""41820a71-8d5e-4f38-b755-515bf86e500d"",
-                    ""path"": ""<DualShockGamepad>/rightStick/up"",
+                    ""path"": ""<DualShockGamepad>/leftStick/up"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
