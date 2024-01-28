@@ -20,7 +20,9 @@ public class Table : MonoBehaviour
 
     [Header("Misiones")]
     public bool isMisionComplete;
+    //Kidnap
     public GameObject kidnapGameObject;
+    public GameObject kidnapGameObjectIdea;
 
     // Start is called before the first frame update
     void Awake()
@@ -113,7 +115,9 @@ public class Table : MonoBehaviour
     public void ChangeStatus()
     {
         if (isMisionComplete)
+        {
             tableStatus = TableStatus.Happy;
+        }
         /*for (int i = 0; i< isMisionComplete.Length; i++)
         {
             if (isMisionComplete[i]) 

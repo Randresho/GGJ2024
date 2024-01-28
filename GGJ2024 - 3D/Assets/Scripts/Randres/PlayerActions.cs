@@ -307,18 +307,33 @@ public class PlayerActions : MonoBehaviour
                 break;
             case TableStatus.Neutral:
                 //Dialogo
-                tableObject.GetComponent<Table>().tableStatus = TableStatus.Angry;
-                UseSameEvent(_uiHerramientas);
+                if(tableObject.GetComponent<Table>().isMisionComplete)
+                {
+                    print("Te lo puedes llevar");
+                }
+                else
+                {
+                    tableObject.GetComponent<Table>().tableStatus = TableStatus.Angry;
+                }
                 break;
             case TableStatus.Happy:
                 //Dialogo
-
+                if (tableObject.GetComponent<Table>().isMisionComplete)
+                {
+                    print("Te lo puedes llevar");
+                }
+                else
+                {
+                    tableObject.GetComponent<Table>().tableStatus = TableStatus.Angry;
+                }
                 break;
             case TableStatus.Comida:
                 break;
             default:
                 break;
         }
+
+        UseSameEvent(_uiHerramientas);
     }
 
     public void Sabotage()
