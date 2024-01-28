@@ -262,7 +262,11 @@ MonoBehaviour:
   finalScale: {x: 1, y: 1, z: 1}
   canScale: 0
   speedScale: 10
+  m_rigidbody: {fileID: 205312219}
+  m_boxCollider: {fileID: 205312214}
   tableObject: {fileID: 0}
+  animalTable: 4
+  isMisionComplete: 0
 --- !u!54 &205312219
 Rigidbody:
   m_ObjectHideFlags: 0
