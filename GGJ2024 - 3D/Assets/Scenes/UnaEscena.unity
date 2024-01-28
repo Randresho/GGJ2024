@@ -148,6 +148,7 @@ MonoBehaviour:
   finalScale: {x: 0, y: 0, z: 0}
   canScale: 0
   speedScale: 0
+  tableObject: {fileID: 0}
 --- !u!65 &22893555
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -690,7 +691,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &714451527
 AudioListener:
   m_ObjectHideFlags: 0

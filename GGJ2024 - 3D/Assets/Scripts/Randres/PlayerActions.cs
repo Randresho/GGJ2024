@@ -61,6 +61,13 @@ public class PlayerActions : MonoBehaviour
             canvasGameObjectHerramientas.transform.localScale = Vector3.Lerp(canvasGameObjectHerramientas.transform.localScale, startScale, Time.deltaTime * speedScale);
             canNavegateOptions = false;
         }
+
+        /*if (canScaleHerramientas)
+            EventSystem.current.SetSelectedGameObject(_uiHerramientas);
+        else if (canScale)
+            EventSystem.current.SetSelectedGameObject(_uiOpciones);*/
+        if(!canScale && !canScaleHerramientas)
+            EventSystem.current.SetSelectedGameObject(null);
     }
 
     public void SwapUi()
@@ -68,11 +75,17 @@ public class PlayerActions : MonoBehaviour
         canScale = !canScale;
         canScaleHerramientas = !canScaleHerramientas;
 
-        if(canScaleHerramientas)
-            EventSystem.current.SetSelectedGameObject(_uiHerramientas);
+        StartCoroutine(DelaySwap());
 
-        if(canScale)
+    }
+
+    IEnumerator DelaySwap()
+    {
+        yield return new WaitForSeconds(0.5f);
+        if (canScale)
             EventSystem.current.SetSelectedGameObject(_uiOpciones);
+        if (canScaleHerramientas)
+            EventSystem.current.SetSelectedGameObject(_uiHerramientas);
     }
 
     private void OnTriggerEnter(Collider other)

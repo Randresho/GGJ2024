@@ -14,6 +14,10 @@ public class Item : MonoBehaviour
     public bool canScale;
     public float speedScale;
 
+    [Header("Table")]
+    public GameObject tableObject;
+    public AnimalTable animalTable;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,6 +60,32 @@ public class Item : MonoBehaviour
             else
             {
                 canvasGameObject.transform.localScale = Vector3.Lerp(canvasGameObject.transform.localScale, starScale, Time.deltaTime * speedScale);
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        GameObject obj = other.gameObject;
+        if(other.GetComponent<Table>() != null)
+        {
+            print("Estoy tocado una mesa");
+            if(!wasGrab)
+            {
+                tableObject = other.gameObject;
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        GameObject obj = other.gameObject;
+        if (other.GetComponent<Table>() != null)
+        {
+            print("Estoy fuera de la mesa");
+            if (!wasGrab)
+            {
+                tableObject = null;
             }
         }
     }
