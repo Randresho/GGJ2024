@@ -12,18 +12,19 @@ public class PlayerActions : MonoBehaviour
     public bool isInAObject;
     [SerializeField] private Item item;
     [SerializeField] private GameObject itemGameObject;
+    private MovimientoDelPersonaje movimiento;
 
     // Start is called before the first frame update
     void Awake()
     {
         m_playerController = new PlayerController();
         m_rigidbody = GetComponent<Rigidbody>();
+        movimiento = FindObjectOfType<MovimientoDelPersonaje>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -62,6 +63,14 @@ public class PlayerActions : MonoBehaviour
                         break;
                     case ItemType.Agarrable:
                         print("Estoy con un objeto agarrable");
+                        if(other.GetComponent<Item>().isGrabbleble)
+                        {
+                            other.GetComponent<Item>().canScale = true;
+                        }
+                        else
+                        {
+                            other.GetComponent<Item>().canScale = false;
+                        }
                         break;
                     default:
                         break;
@@ -86,16 +95,19 @@ public class PlayerActions : MonoBehaviour
                 item = null;
                 isInAObject = false;
             }
-            switch (other.GetComponent<Item>().itemType)
+
+            other.GetComponent<Item>().canScale = false;
+            /*switch (other.GetComponent<Item>().itemType)
             {
                 case ItemType.Dialogo:
                     other.GetComponent<Item>().canScale = false;
                     break;
                 case ItemType.Agarrable:
+                    
                     break;
                 default:
                     break;
-            }
+            }*/
         }
 
         if (other.GetComponent<Table>() != null)
@@ -118,24 +130,37 @@ public class PlayerActions : MonoBehaviour
                     }
                     break;
                 case ItemType.Agarrable:
-                    if (isAttach)
+                    if (itemGameObject.GetComponent<Item>().isGrabbleble)
                     {
-                        print("Solte el objeto");
-                        //itemGameObject.transform.parent = null;
-                        itemGameObject.transform.SetParent(null);
-                        isAttach = false;
-                        //itemGameObject.GetComponent<Rigidbody>().useGravity = true;
-                        //itemGameObject.GetComponent<Rigidbody>().isKinematic = false;
-                    }
-                    else
-                    {
-                        print("Agarre el objeto");
-                        //itemGameObject.transform.parent = attachPoint;
-                        itemGameObject.transform.SetParent(attachPoint);
-                        itemGameObject.transform.position = attachPoint.position;
-                        isAttach = true;
-                        //itemGameObject.GetComponent<Rigidbody>().useGravity = false;
-                        //itemGameObject.GetComponent<Rigidbody>().isKinematic = true;
+                        if (isAttach)
+                        {
+                            print("Solte el objeto");
+                            itemGameObject.transform.parent = null;
+                            itemGameObject.transform.SetParent(null);
+                            isAttach = false;
+
+                            itemGameObject.GetComponent<Item>().wasGrab = false;
+                            itemGameObject.GetComponent<Rigidbody>().useGravity = true;
+                            itemGameObject.GetComponent<Rigidbody>().isKinematic = false;
+                            itemGameObject.GetComponent<BoxCollider>().enabled = true;
+
+                            movimiento.m_PlayerSpeed = movimiento.m_PlayerSpeedMax;
+                        }
+                        else
+                        {
+                            print("Agarre el objeto");
+                            itemGameObject.transform.parent = attachPoint;
+                            itemGameObject.transform.SetParent(attachPoint);
+                            itemGameObject.transform.position = attachPoint.position;
+                            isAttach = true;
+
+                            itemGameObject.GetComponent<Item>().wasGrab = true;
+                            itemGameObject.GetComponent<Rigidbody>().useGravity = false;
+                            itemGameObject.GetComponent<Rigidbody>().isKinematic = true;
+                            itemGameObject.GetComponent<BoxCollider>().enabled = false;
+
+                            movimiento.m_PlayerSpeed = movimiento.m_PlayerSpeed / 2;
+                        }
                     }
                     break;
                 default:

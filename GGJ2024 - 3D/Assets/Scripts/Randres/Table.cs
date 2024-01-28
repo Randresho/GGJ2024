@@ -18,6 +18,8 @@ public class Table : MonoBehaviour
     public Sprite[] emociones;
     public Animator animator;
 
+  
+
     // Start is called before the first frame update
     void Awake()
     {
