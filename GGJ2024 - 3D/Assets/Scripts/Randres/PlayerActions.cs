@@ -29,6 +29,9 @@ public class PlayerActions : MonoBehaviour
     [SerializeField] private GameObject _uiOpciones;
     [SerializeField] private GameObject _uiHerramientas;
 
+    [Header("Table")]
+    public GameObject tableObject;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -63,6 +66,18 @@ public class PlayerActions : MonoBehaviour
         }
     }
 
+    private void UseSameEvent(GameObject evento)
+    {
+        StartCoroutine(sameUI(evento));
+    }
+
+    IEnumerator sameUI(GameObject evento)
+    {
+        yield return new WaitForSeconds(0.5f);
+        EventSystem.current.SetSelectedGameObject(evento);
+
+    }
+
     public void SwapUi()
     {
         canScale = !canScale;
@@ -90,6 +105,7 @@ public class PlayerActions : MonoBehaviour
 
         if (other.GetComponent<Table>() != null)
         {
+            tableObject = obj;
             switch (other.GetComponent<Table>().tableStatus)
             {
                 case TableStatus.Angry:
@@ -147,6 +163,7 @@ public class PlayerActions : MonoBehaviour
         if (other.GetComponent<Table>() != null)
         {
             other.GetComponent<Table>().canScale = true;
+            
         }
     }
 
@@ -182,6 +199,8 @@ public class PlayerActions : MonoBehaviour
 
             canScaleHerramientas = false;
             canScale = false;
+
+            tableObject = null;
 
             EventSystem.current.SetSelectedGameObject(null);
         }
@@ -238,6 +257,83 @@ public class PlayerActions : MonoBehaviour
                     break;
             }
         }
+    }
+
+    public void StartMision()
+    {
+        //Dialogo aqui
+
+        switch (tableObject.GetComponent<Table>().tableStatus)
+        {
+            case TableStatus.Angry:
+                //Dialogo
+
+                break;
+            case TableStatus.Neutral:
+                //Dialogo
+
+                break;
+            case TableStatus.Happy:
+                //Dialogo
+
+                break;
+            case TableStatus.Comida:
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void Kidnap()
+    {
+        switch (tableObject.GetComponent<Table>().tableStatus)
+        {
+            case TableStatus.Angry:
+                //Dialogo
+
+                break;
+            case TableStatus.Neutral:
+                //Dialogo
+                tableObject.GetComponent<Table>().tableStatus = TableStatus.Angry;
+                UseSameEvent(_uiHerramientas);
+                break;
+            case TableStatus.Happy:
+                //Dialogo
+
+                break;
+            case TableStatus.Comida:
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void Sabotage()
+    {
+        switch (tableObject.GetComponent<Table>().tableStatus)
+        {
+            case TableStatus.Angry:
+                //Dialogo
+
+                break;
+            case TableStatus.Neutral:
+                //Dialogo
+
+                break;
+            case TableStatus.Happy:
+                //Dialogo
+
+                break;
+            case TableStatus.Comida:
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void StartDialoge(int xd)
+    {
+
     }
 
     #region Input Enable / Disable

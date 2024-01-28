@@ -18,7 +18,9 @@ public class Table : MonoBehaviour
     public Sprite[] emociones;
     public Animator animator;
 
-  
+    [Header("Misiones")]
+    public bool isMisionComplete;
+    public GameObject kidnapGameObject;
 
     // Start is called before the first frame update
     void Awake()
@@ -67,6 +69,8 @@ public class Table : MonoBehaviour
                 tableStatus = TableStatus.Neutral;
                 break;
         }
+
+        
     }
 
     // Update is called once per frame
@@ -103,5 +107,21 @@ public class Table : MonoBehaviour
         {
             canvasGameObject.transform.localScale = Vector3.Lerp(canvasGameObject.transform.localScale, starScale, Time.deltaTime * speedScale);
         }
+        ChangeStatus();
+    }
+
+    public void ChangeStatus()
+    {
+        if (isMisionComplete)
+            tableStatus = TableStatus.Happy;
+        /*for (int i = 0; i< isMisionComplete.Length; i++)
+        {
+            if (isMisionComplete[i]) 
+            {
+                animalTable = (AnimalTable) i;
+            }
+
+            print(animalTable);
+        }*/
     }
 }
